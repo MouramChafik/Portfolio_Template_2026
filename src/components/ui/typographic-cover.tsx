@@ -4,7 +4,7 @@ const DEFAULT_TONE: [string, string] = ["#edf0f5", "#17203a"];
 
 type TypographicCoverProps = {
   name: string;
-  /** [fond, texte] — choisissez un contraste d'au moins 4,5:1. */
+  /** [fond, texte], choisissez un contraste d'au moins 4,5:1. */
   tone?: [string, string];
   /** Petite ligne en haut à gauche (version grande uniquement). */
   label?: string;

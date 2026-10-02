@@ -2,7 +2,7 @@ import { typoDeep } from "@/lib/typo";
 import type { FeaturedProject, Project, ProjectWithCaseStudy } from "./types";
 
 /*
- * PROJETS — un seul fichier pour tous vos projets, dans l'ordre d'affichage.
+ * PROJETS, un seul fichier pour tous vos projets, dans l'ordre d'affichage.
  *   featured: true  → grande carte dans « Projets choisis »
  *   featured: false → ligne dans le tableau « Autres projets »
  * Avec un caseStudy, le projet a sa page /projets/[slug] (et sa ligne devient

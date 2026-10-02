@@ -33,7 +33,7 @@ function BlockView({ block }: { block: Block }) {
           {block.items.map((item, index) => (
             <li key={item} className="grid grid-cols-[2rem_1fr] gap-2">
               <span className="tabular font-semibold text-ink-muted" aria-hidden="true">
-                {block.ordered ? `${index + 1}.` : "—"}
+                {block.ordered ? `${index + 1}.` : "•"}
               </span>
               <span>
                 <RichText text={item} />

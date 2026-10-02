@@ -2,7 +2,7 @@ import { typoDeep } from "@/lib/typo";
 import type { Link } from "./types";
 
 /*
- * IDENTITÉ DU SITE — commencez par ce fichier.
+ * IDENTITÉ DU SITE, commencez par ce fichier.
  * Écrivez normalement : apostrophes, espaces avant « ? » ou « : » et
  * guillemets sont corrigés automatiquement (src/lib/typo.ts).
  */

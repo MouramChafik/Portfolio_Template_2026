@@ -1,6 +1,6 @@
 import { typoDeep } from "@/lib/typo";
 
-/* CONTENU DE L'ACCUEIL — sections dans l'ordre de la page. */
+/* CONTENU DE L'ACCUEIL, sections dans l'ordre de la page. */
 
 export const hero = typoDeep({
   title: "Des interfaces claires pour des produits complexes.",
