@@ -37,6 +37,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [status, setStatus] = useState<Status>(null);
   const [sending, setSending] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   function check(field: HTMLInputElement | HTMLTextAreaElement) {
     const error = validate(field);
@@ -101,59 +102,28 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="grid gap-6">
-      <div className="grid gap-2">
-        <label htmlFor="nom" className="text-sm font-semibold">Nom</label>
-        <input id="nom" name="nom" autoComplete="name" required className={inputClasses}
-          aria-invalid={errors.nom ? true : undefined} aria-describedby={errors.nom ? "nom-error" : undefined}
-          onBlur={onBlur} onChange={onInput} />
-        {fieldError("nom")}
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="email" className="text-sm font-semibold">E-mail</label>
-        <input id="email" name="email" type="email" autoComplete="email" inputMode="email" required className={inputClasses}
-          aria-invalid={errors.email ? true : undefined} aria-describedby={errors.email ? "email-error" : undefined}
-          onBlur={onBlur} onChange={onInput} />
-        {fieldError("email")}
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="entreprise" className="text-sm font-semibold">
-          Entreprise <span className="font-normal text-ink-muted">(facultatif)</span>
-        </label>
-        <input id="entreprise" name="entreprise" autoComplete="organization" className={inputClasses} />
-      </div>
-
-      <fieldset className="grid gap-2">
-        <legend className="mb-2 text-sm font-semibold">Type de projet</legend>
-        <div className="flex flex-wrap gap-2">
-          {contact.projectTypes.map((type) => (
-            <label key={type} className="relative">
-              <input type="radio" name="type" value={type} className="peer absolute inset-0 cursor-pointer opacity-0" />
-              <span className="inline-flex min-h-11 items-center rounded-full border border-line-strong px-4 text-sm font-medium transition-colors duration-200 peer-hover:border-ink peer-checked:border-action peer-checked:bg-action peer-checked:text-on-action peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus">
-                {type}
-              </span>
-            </label>
-          ))}
+    <form onSubmit={handleSubmit} noValidate className="grid gap-5">
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-4">
+        <div className="grid content-start gap-2">
+          <label htmlFor="nom" className="text-sm font-semibold">Nom</label>
+          <input id="nom" name="nom" autoComplete="name" required className={inputClasses}
+            aria-invalid={errors.nom ? true : undefined} aria-describedby={errors.nom ? "nom-error" : undefined}
+            onBlur={onBlur} onChange={onInput} />
+          {fieldError("nom")}
         </div>
-      </fieldset>
 
-      <div className="grid gap-2">
-        <label htmlFor="budget" className="text-sm font-semibold">Budget estimé</label>
-        <div className="relative after:pointer-events-none after:absolute after:top-1/2 after:right-4 after:size-2 after:-translate-y-[70%] after:rotate-45 after:border-r-[1.5px] after:border-b-[1.5px] after:border-current after:content-['']">
-          <select id="budget" name="budget" defaultValue="" className={cn(inputClasses, "cursor-pointer appearance-none pr-11")}>
-            <option value="" disabled>Choisir une fourchette</option>
-            {contact.budgets.map((budget) => (
-              <option key={budget} value={budget}>{budget}</option>
-            ))}
-          </select>
+        <div className="grid content-start gap-2">
+          <label htmlFor="email" className="text-sm font-semibold">E-mail</label>
+          <input id="email" name="email" type="email" autoComplete="email" inputMode="email" required className={inputClasses}
+            aria-invalid={errors.email ? true : undefined} aria-describedby={errors.email ? "email-error" : undefined}
+            onBlur={onBlur} onChange={onInput} />
+          {fieldError("email")}
         </div>
       </div>
 
       <div className="grid gap-2">
         <label htmlFor="message" className="text-sm font-semibold">Votre message</label>
-        <textarea id="message" name="message" required rows={5} className={cn(inputClasses, "min-h-36 resize-y")}
+        <textarea id="message" name="message" required rows={4} className={cn(inputClasses, "min-h-28 resize-y")}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "message-hint message-error" : "message-hint"}
           onBlur={onBlur} onChange={onInput} />
@@ -161,6 +131,75 @@ export function ContactForm() {
           Quelques lignes suffisent : le produit, son public, votre échéance.
         </p>
         {fieldError("message")}
+      </div>
+
+      {/* Précisions facultatives, repliées pour garder un formulaire court */}
+      <div>
+        <button
+          type="button"
+          aria-expanded={showDetails}
+          aria-controls="precisions-projet"
+          onClick={() => setShowDetails((open) => !open)}
+          className="inline-flex min-h-11 items-center gap-2.5 text-sm font-semibold"
+        >
+          <span aria-hidden="true" className="relative size-3">
+            <span className="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 bg-current" />
+            <motion.span
+              className="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 bg-current"
+              initial={false}
+              animate={{ rotate: showDetails ? 0 : 90 }}
+              transition={{ duration: 0.25, ease: [0.2, 0.7, 0.2, 1] }}
+            />
+          </span>
+          <span>
+            Préciser le projet <span className="font-normal text-ink-muted">(facultatif)</span>
+          </span>
+        </button>
+
+        <motion.div
+          id="precisions-projet"
+          initial={false}
+          animate={{ height: showDetails ? "auto" : 0, opacity: showDetails ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
+          className="overflow-hidden"
+          inert={!showDetails}
+        >
+          {/* Marge intérieure : les contours de focus ne sont pas rognés */}
+          <div className="-mx-1 grid gap-5 px-1 pt-3 pb-1">
+            <fieldset className="grid gap-2">
+              <legend className="mb-2 text-sm font-semibold">Type de projet</legend>
+              <div className="flex flex-wrap gap-2">
+                {contact.projectTypes.map((type) => (
+                  <label key={type} className="relative">
+                    <input type="radio" name="type" value={type} className="peer absolute inset-0 cursor-pointer opacity-0" />
+                    <span className="inline-flex min-h-11 items-center rounded-full border border-line-strong px-4 text-sm font-medium transition-colors duration-200 peer-hover:border-ink peer-checked:border-action peer-checked:bg-action peer-checked:text-on-action peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus">
+                      {type}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-4">
+              <div className="grid content-start gap-2">
+                <label htmlFor="budget" className="text-sm font-semibold">Budget estimé</label>
+                <div className="relative after:pointer-events-none after:absolute after:top-1/2 after:right-4 after:size-2 after:-translate-y-[70%] after:rotate-45 after:border-r-[1.5px] after:border-b-[1.5px] after:border-current after:content-['']">
+                  <select id="budget" name="budget" defaultValue="" className={cn(inputClasses, "cursor-pointer appearance-none pr-11")}>
+                    <option value="" disabled>Choisir</option>
+                    {contact.budgets.map((budget) => (
+                      <option key={budget} value={budget}>{budget}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid content-start gap-2">
+                <label htmlFor="entreprise" className="text-sm font-semibold">Entreprise</label>
+                <input id="entreprise" name="entreprise" autoComplete="organization" className={inputClasses} />
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       <Button type="submit" disabled={sending} className="w-full">
