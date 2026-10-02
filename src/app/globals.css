@@ -1,0 +1,363 @@
+/* ==========================================================================
+   GLOBALS — Tailwind CSS 4 + design tokens
+   --------------------------------------------------------------------------
+   Trois niveaux de tokens :
+     1. Primitives  (:root)   valeurs brutes, à ne pas utiliser directement
+     2. Sémantiques (@theme)  rôles → classes Tailwind : bg-canvas, text-ink…
+     3. Composants  (@utility) styles typographiques et conteneurs réutilisables
+   Le thème clair/sombre passe par light-dark() : une ligne par couleur.
+   ========================================================================== */
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.is-dark, .is-dark *));
+
+/* 1. PRIMITIVES ============================================================ */
+
+:root {
+  --ink-900: #17203a;
+  --ink-700: #2c3654;
+  --slate-600: #535d78;
+  --slate-400: #8a93ab;
+  --slate-200: #d5dae3;
+  --mist-100: #edf0f5;
+  --mist-50: #f6f7fa;
+  --white: #ffffff;
+
+  --night-950: #0f172e;
+  --night-900: #151e38;
+  --night-800: #1b2441;
+  --night-700: #2a3454;
+  --fog-400: #7d88a6;
+  --fog-300: #a3adc6;
+  --fog-100: #e7ecf6;
+
+  --marker-400: #ffd94a;
+  --marker-300: #ffe375;
+
+  --green-600: #13804a;
+  --green-400: #3dd68c;
+  --red-700: #b42318;
+  --red-300: #ff8a80;
+
+  --blueprint-600: #1f4e9e;
+  --blueprint-500: #2a5db0;
+  --blueprint-ink: #eaf2ff;
+  --blueprint-muted: #b5cbf0;
+  --blueprint-focus: #7fb0ff;
+
+  --container-max: 90rem;
+
+  color-scheme: light dark;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+/* 2. SÉMANTIQUES (→ utilitaires Tailwind) ================================== */
+
+@theme {
+  /* On repart de zéro : seules les couleurs du système existent */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  /* Encre fixe (ne change pas avec le thème) : texte sur jaune ou sur image */
+  --color-ink-900: #17203a;
+
+  --color-canvas: light-dark(var(--white), var(--night-950));
+  --color-surface: light-dark(var(--mist-100), var(--night-800));
+  --color-surface-soft: light-dark(var(--mist-50), var(--night-900));
+  --color-ink: light-dark(var(--ink-900), var(--fog-100));
+  --color-ink-muted: light-dark(var(--slate-600), var(--fog-300));
+  --color-line: light-dark(var(--slate-200), var(--night-700));
+  --color-line-strong: light-dark(var(--slate-400), var(--fog-400));
+  --color-action: light-dark(var(--ink-900), var(--fog-100));
+  --color-action-hover: light-dark(var(--ink-700), var(--white));
+  --color-on-action: light-dark(var(--white), var(--night-950));
+  /* Le jaune ne marque que des preuves : résultats, chiffres, sélection */
+  --color-marker: var(--marker-400);
+  --color-on-marker: var(--ink-900);
+  --color-success: light-dark(var(--green-600), var(--green-400));
+  --color-danger: light-dark(var(--red-700), var(--red-300));
+  --color-focus: light-dark(var(--blueprint-600), var(--blueprint-focus));
+  --color-blueprint: var(--blueprint-600);
+  --color-blueprint-light: var(--blueprint-500);
+  --color-blueprint-ink: var(--blueprint-ink);
+  --color-blueprint-muted: var(--blueprint-muted);
+
+  /* Échelle typographique fluide (min → max entre 375 et 1440 px) */
+  --text-*: initial;
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1.5;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.45;
+  --text-base: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
+  --text-base--line-height: 1.55;
+  --text-lg: clamp(1.1875rem, 1.05rem + 0.55vw, 1.4375rem);
+  --text-lg--line-height: 1.45;
+  --text-xl: clamp(1.375rem, 1.15rem + 0.95vw, 1.875rem);
+  --text-xl--line-height: 1.2;
+  --text-2xl: clamp(1.875rem, 1.3rem + 2.4vw, 3.25rem);
+  --text-2xl--line-height: 1.12;
+  --text-3xl: clamp(2.25rem, 1.3rem + 4vw, 4.5rem);
+  --text-3xl--line-height: 1.04;
+  --text-display: clamp(2.5rem, 0.9rem + 6.8vw, 6.75rem);
+  --text-display--line-height: 0.96;
+
+  --font-weight-medium: 520;
+  --font-weight-semibold: 620;
+  --font-weight-bold: 720;
+  --font-weight-extrabold: 800;
+
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.022em;
+  --tracking-title: -0.012em;
+
+  /* Espacements sémantiques (en plus de l'échelle de 4 px de Tailwind) */
+  --spacing-page: clamp(1rem, 0.25rem + 3.6vw, 3rem);
+  --spacing-gutter: clamp(1rem, 0.6rem + 1.4vw, 1.5rem);
+  --spacing-section: clamp(4rem, 2.5rem + 5vw, 7.5rem);
+  --spacing-module: clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+  --spacing-stack: clamp(1.25rem, 1rem + 1vw, 2rem);
+  --spacing-header: 4.5rem;
+
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-float: 0 18px 40px -18px rgb(15 23 46 / 0.35), 0 2px 6px -2px rgb(15 23 46 / 0.12);
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+/* Polices chargées par next/font (voir src/lib/fonts.ts) */
+@theme inline {
+  --font-sans: var(--font-mona), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* Navigateurs sans light-dark() (avant 2024) : thème clair uniquement */
+@supports not (color: light-dark(#000, #fff)) {
+  :root {
+    --color-canvas: var(--white);
+    --color-surface: var(--mist-100);
+    --color-surface-soft: var(--mist-50);
+    --color-ink: var(--ink-900);
+    --color-ink-muted: var(--slate-600);
+    --color-line: var(--slate-200);
+    --color-line-strong: var(--slate-400);
+    --color-action: var(--ink-900);
+    --color-action-hover: var(--ink-700);
+    --color-on-action: var(--white);
+    --color-success: var(--green-600);
+    --color-danger: var(--red-700);
+    --color-focus: var(--blueprint-600);
+  }
+}
+
+/* 3. COMPOSANTS : styles typographiques et conteneurs ====================== */
+
+/* Mona Sans a un axe de largeur : c'est la signature typographique du site */
+@utility type-display {
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--font-weight-extrabold);
+  font-stretch: 125%;
+}
+
+@utility type-h2 {
+  font-size: var(--text-3xl);
+  line-height: var(--text-3xl--line-height);
+  letter-spacing: var(--tracking-heading);
+  font-weight: var(--font-weight-bold);
+  font-stretch: 118%;
+}
+
+@utility type-h3 {
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  letter-spacing: var(--tracking-title);
+  font-weight: var(--font-weight-bold);
+  font-stretch: 110%;
+}
+
+@utility type-lede {
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+}
+
+@utility type-ui {
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  font-weight: var(--font-weight-semibold);
+  font-stretch: 108%;
+}
+
+/* Conteneur de page (le « frame », comme dans un outil de design) */
+@utility frame {
+  width: min(var(--container-max), 100% - 2 * var(--spacing-page));
+  margin-inline: auto;
+}
+
+/* Grille de mise en page : 4 colonnes, 8 sur tablette, 12 sur grand écran */
+@utility layout-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--spacing-gutter);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* BASE ===================================================================== */
+
+@layer base {
+  :root { --grid-columns: 4; }
+
+  @media (width >= 48rem) { :root { --grid-columns: 8; } }
+  @media (width >= 64rem) { :root { --grid-columns: 12; } }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--spacing-header) + 1rem);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    hyphens: none;
+  }
+
+  p, li, dd, blockquote { text-wrap: pretty; }
+
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  ::selection {
+    background: var(--marker-300);
+    color: var(--ink-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  mark {
+    padding: 0.04em 0.22em;
+    margin-inline: -0.06em;
+    border-radius: var(--radius-xs);
+    background: var(--color-marker);
+    color: var(--color-on-marker);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  kbd {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 0.05em 0.4em;
+    border: 1px solid var(--color-line-strong);
+    border-bottom-width: 2px;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-sans);
+    font-size: 0.85em;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) { cursor: pointer; }
+}
+
+/* TRANSITIONS DE VUE ======================================================= */
+
+/* La page reste cliquable pendant une transition */
+::view-transition { pointer-events: none; }
+
+/* L'en-tête reste immobile pendant les changements de page */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) { display: none; }
+::view-transition-new(site-header) { animation: none; }
+
+/* Navigation : vers une étude de cas (avant) ou retour à l'accueil (arrière) */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -48px;
+  animation: 150ms ease-in both vt-fade reverse, 400ms var(--ease-in-out) both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 48px;
+  animation: 240ms ease-out 150ms both vt-fade, 400ms var(--ease-in-out) both vt-slide;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 48px;
+  animation: 150ms ease-in both vt-fade reverse, 400ms var(--ease-in-out) both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -48px;
+  animation: 240ms ease-out 150ms both vt-fade, 400ms var(--ease-in-out) both vt-slide;
+}
+
+/* Couverture de projet : la vignette devient l'image d'en-tête */
+::view-transition-group(.morph) { animation-duration: 480ms; animation-timing-function: var(--ease-out); }
+::view-transition-image-pair(.morph) { animation-name: vt-blur; }
+
+/* Changement de thème : un simple fondu de toute la page */
+.vt-theme * { view-transition-name: none !important; }
+
+@keyframes vt-fade {
+  from { opacity: 0; filter: blur(3px); }
+  to { opacity: 1; filter: blur(0); }
+}
+@keyframes vt-slide {
+  from { translate: var(--slide-offset) 0; }
+  to { translate: 0 0; }
+}
+@keyframes vt-blur {
+  30% { filter: blur(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}
