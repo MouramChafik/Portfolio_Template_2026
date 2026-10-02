@@ -5,7 +5,7 @@ import { typoDeep } from "@/lib/typo";
 export const hero = typoDeep({
   title: "Des interfaces claires pour des produits complexes.",
   intro:
-    "Je suis Camille Roux, designer UI/UX à Lyon. Depuis huit ans, j'aide des équipes produit à rendre simples des outils qui ne l'étaient pas : banque, santé, logistique.",
+    "Je suis James Dupont, designer UI/UX à Lyon. Depuis huit ans, j'aide des équipes produit à rendre simples des outils qui ne l'étaient pas : banque, santé, logistique.",
 });
 
 export const projectsIntro = typoDeep(
@@ -22,7 +22,7 @@ export const profile = typoDeep({
     src: "/images/portrait.svg",
     width: 800,
     height: 1000,
-    alt: "Emplacement du portrait de Camille Roux",
+    alt: "Emplacement du portrait de James Dupont",
   },
   timeline: [
     { period: "Depuis 2023", role: "Designer UI/UX en freelance", org: "Start-up et grands groupes, Lyon et à distance" },
@@ -72,7 +72,7 @@ export const method = typoDeep({
 
 export const testimonials = typoDeep([
   {
-    quote: "Camille a transformé un tableur de quarante colonnes en un écran que nos infirmières utilisent sans formation.",
+    quote: "James a transformé un tableur de quarante colonnes en un écran que nos infirmières utilisent sans formation.",
     name: "Hélène Garnier",
     role: "Directrice produit, Vigie",
   },

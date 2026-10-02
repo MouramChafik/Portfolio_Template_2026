@@ -1,7 +1,7 @@
 # Portfolio UI/UX, template 2026
 
 Template de portfolio pour designer UI/UX, construit avec **Next.js 16**, **Tailwind CSS 4** et **Motion** (anciennement Framer Motion).
-Le contenu est fictif (Camille Roux, designer à Lyon) : remplacez-le par le vôtre.
+Le contenu est fictif (James Dupont, designer à Lyon) : remplacez-le par le vôtre.
 
 ## En bref
 

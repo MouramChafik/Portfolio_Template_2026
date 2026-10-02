@@ -7,8 +7,8 @@ import type { Link } from "./types";
  * guillemets sont corrigés automatiquement (src/lib/typo.ts).
  */
 export const site = typoDeep({
-  name: "Camille Roux",
-  firstName: "Camille",
+  name: "James Dupont",
+  firstName: "James",
   role: "Designer UI/UX",
   city: "Lyon",
   /** Fuseau horaire de l'horloge affichée dans l'introduction. */
@@ -20,12 +20,15 @@ export const site = typoDeep({
    */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.example.com",
 
-  title: "Camille Roux, designer UI/UX à Lyon",
+  title: "James Dupont, designer UI/UX à Lyon",
   description:
-    "Camille Roux, designer UI/UX à Lyon. Recherche utilisateur, design d'interface et design systems pour des produits complexes : banque, santé, logistique.",
+    "James Dupont, designer UI/UX à Lyon. Recherche utilisateur, design d'interface et design systems pour des produits complexes : banque, santé, logistique.",
 
   available: true,
   availability: "Disponible à partir de janvier 2027",
+
+  /** Mention « Créé par » du pied de page. */
+  credit: { label: "Mouram Chafik", href: "https://github.com/MouramChafik" },
 
   /** Date de dernière mise à jour du contenu (format AAAA-MM-JJ). */
   updatedAt: "2026-10-02",

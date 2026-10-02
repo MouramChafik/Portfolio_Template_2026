@@ -272,7 +272,7 @@ const rawProjects: Project[] = [
           title: "Résultats",
           blocks: [
             { type: "p", text: "Après trois mois dans six services pilotes, ==le temps pour trouver un lit disponible a baissé de 27 %==. Le déploiement à l'ensemble du CHU est prévu pour 2026." },
-            { type: "quote", text: "Camille a transformé un tableur de quarante colonnes en un écran que nos infirmières utilisent sans formation.", name: "Hélène Garnier", role: "Directrice produit, Vigie" },
+            { type: "quote", text: "James a transformé un tableur de quarante colonnes en un écran que nos infirmières utilisent sans formation.", name: "Hélène Garnier", role: "Directrice produit, Vigie" },
           ],
         },
         {
