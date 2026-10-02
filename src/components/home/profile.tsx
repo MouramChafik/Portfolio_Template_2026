@@ -2,6 +2,7 @@ import Image from "next/image";
 import { profile } from "@/content/home";
 import { FadeIn } from "@/components/motion/fade-in";
 import { MediaReveal } from "@/components/motion/media-reveal";
+import { asset } from "@/lib/asset";
 
 export function Profile() {
   return (
@@ -10,7 +11,7 @@ export function Profile() {
         <div className="lg:sticky lg:top-[calc(var(--spacing-header)+2rem)] lg:col-span-4 lg:self-start">
           <MediaReveal className="aspect-[4/5] max-w-[26rem]">
             <Image
-              src={profile.portrait.src}
+              src={asset(profile.portrait.src)}
               alt={profile.portrait.alt}
               width={profile.portrait.width}
               height={profile.portrait.height}

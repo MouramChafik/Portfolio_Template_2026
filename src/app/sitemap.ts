@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { caseStudies } from "@/content/projects";
 import { site } from "@/content/site";
 
+/* Générée au build : compatible avec l'export statique. */
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(site.updatedAt);
   return [

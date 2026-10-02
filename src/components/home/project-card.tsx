@@ -7,6 +7,7 @@ import { ViewTransition, useRef, useState, type PointerEvent } from "react";
 import type { FeaturedProject } from "@/content/types";
 import { MediaReveal } from "@/components/motion/media-reveal";
 import { RichText } from "@/components/ui/rich-text";
+import { asset } from "@/lib/asset";
 
 type ProjectCardProps = {
   project: FeaturedProject;
@@ -62,7 +63,7 @@ export function ProjectCard({ project, sizes, eager = false }: ProjectCardProps)
         <ViewTransition name={`cover-${project.slug}`} share="morph" default="none">
           <MediaReveal className={ratio === "4:3" ? "aspect-[4/3]" : "aspect-[4/5]"}>
             <Image
-              src={project.cover.src}
+              src={asset(project.cover.src)}
               alt={project.cover.alt}
               width={project.cover.width}
               height={project.cover.height}

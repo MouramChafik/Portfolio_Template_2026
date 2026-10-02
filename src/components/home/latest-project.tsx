@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { featuredProjects } from "@/content/projects";
 import { RichText } from "@/components/ui/rich-text";
+import { asset } from "@/lib/asset";
 
 /** Raccourci vers le projet le plus récent, avec son résultat principal. */
 export function LatestProject() {
@@ -16,7 +17,7 @@ export function LatestProject() {
     >
       <span className="block aspect-[4/3] overflow-hidden rounded-sm bg-surface">
         <Image
-          src={project.cover.src}
+          src={asset(project.cover.src)}
           alt=""
           width={240}
           height={180}

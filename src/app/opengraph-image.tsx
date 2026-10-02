@@ -3,6 +3,9 @@ import { hero } from "@/content/home";
 import { site } from "@/content/site";
 import { BlueprintPanel, ogFonts, ogSize } from "@/lib/og";
 
+/* Générée au build : compatible avec l'export statique. */
+export const dynamic = "force-static";
+
 export const alt = site.title;
 export const size = ogSize;
 export const contentType = "image/png";

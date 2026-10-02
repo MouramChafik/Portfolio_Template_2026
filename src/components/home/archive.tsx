@@ -8,6 +8,7 @@ import type { Project } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { ArrowRight } from "@/components/ui/icons";
 import { TypographicCover } from "@/components/ui/typographic-cover";
+import { asset } from "@/lib/asset";
 
 const PREVIEW = { width: 176, height: 120, gap: 24 };
 
@@ -115,7 +116,7 @@ export function Archive({ items }: { items: Project[] }) {
                   <ViewTransition name={`cover-${hovered.slug}`} share="morph" default="none">
                     {hovered.cover ? (
                       <div className="relative size-full overflow-hidden rounded-md shadow-float">
-                        <Image src={hovered.cover.src} alt="" fill sizes="176px" className="object-cover" />
+                        <Image src={asset(hovered.cover.src)} alt="" fill sizes="176px" className="object-cover" />
                       </div>
                     ) : (
                       <TypographicCover compact name={hovered.name} tone={hovered.tone} className="size-full shadow-float" />

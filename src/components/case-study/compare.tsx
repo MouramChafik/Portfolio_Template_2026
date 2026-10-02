@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { ImageAsset } from "@/content/types";
+import { asset } from "@/lib/asset";
 
 /**
  * Comparateur avant / après. Le curseur est un vrai <input type="range"> :
@@ -16,9 +17,9 @@ export function Compare({ before, after, caption }: { before: ImageAsset; after:
       <div
         className="relative mx-auto aspect-[390/844] w-full max-w-[22rem] select-none overflow-hidden rounded-[28px] border border-line bg-surface shadow-float"
       >
-        <Image src={before.src} alt={before.alt} width={before.width} height={before.height} className="absolute inset-0 size-full object-cover" sizes="420px" />
+        <Image src={asset(before.src)} alt={before.alt} width={before.width} height={before.height} className="absolute inset-0 size-full object-cover" sizes="420px" />
         <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${position}%)` }}>
-          <Image src={after.src} alt={after.alt} width={after.width} height={after.height} className="size-full object-cover" sizes="420px" />
+          <Image src={asset(after.src)} alt={after.alt} width={after.width} height={after.height} className="size-full object-cover" sizes="420px" />
         </div>
 
         <span

@@ -5,6 +5,7 @@ import { MediaReveal } from "@/components/motion/media-reveal";
 import { RichText } from "@/components/ui/rich-text";
 import { Compare } from "./compare";
 import { Stickies } from "./stickies";
+import { asset } from "@/lib/asset";
 
 /** Affiche les blocs d'une section d'étude de cas (voir Block dans content/types.ts). */
 export function Blocks({ blocks }: { blocks: Block[] }) {
@@ -59,7 +60,7 @@ function BlockView({ block }: { block: Block }) {
         <figure className="my-10">
           <MediaReveal className="border border-line">
             <Image
-              src={block.image.src}
+              src={asset(block.image.src)}
               alt={block.image.alt}
               width={block.image.width}
               height={block.image.height}

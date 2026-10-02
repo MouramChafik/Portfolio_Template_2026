@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { MediaReveal } from "@/components/motion/media-reveal";
 import { ArrowLeft } from "@/components/ui/icons";
 import { TypographicCover } from "@/components/ui/typographic-cover";
+import { asset } from "@/lib/asset";
 
 /**
  * En-tête d'étude de cas. Les couvertures en portrait passent à droite du
@@ -20,7 +21,7 @@ export function CaseHero({ project }: { project: ProjectWithCaseStudy }) {
       {cover ? (
         <MediaReveal onMount className={landscape ? "aspect-[4/3]" : "aspect-[4/5]"}>
           <Image
-            src={cover.src}
+            src={asset(cover.src)}
             alt={cover.alt}
             width={cover.width}
             height={cover.height}

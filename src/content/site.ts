@@ -14,8 +14,11 @@ export const site = typoDeep({
   /** Fuseau horaire de l'horloge affichée dans l'introduction. */
   timeZone: "Europe/Paris",
   email: "bonjour@example.com",
-  /** Adresse publique du site (sans barre finale) : sert au SEO et aux images de partage. */
-  url: "https://www.example.com",
+  /**
+   * Adresse publique du site (sans barre finale) : sert au SEO et aux images
+   * de partage. NEXT_PUBLIC_SITE_URL la remplace au build (GitHub Pages).
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.example.com",
 
   title: "Camille Roux, designer UI/UX à Lyon",
   description:
